@@ -16,7 +16,7 @@ Thank you for using **Il-2 vr Hands**! This software is free, open-source, and h
 * **ЮMoney:** [Перевести с карты или кошелька](https://yoomoney.ru)
 * **Boosty:** [Поддержать картой РФ или через СБП](https://boosty.to)
 
-### 🪙 Cryptocurrency / Криптовалюта (Direct / Напрямую)
+### 💎 Cryptocurrency / Криптовалюта (Direct / Напрямую)
 No middleman fees. Please double-check the network before sending:
 Отсутствуют комиссии посредников. Пожалуйста, перепроверьте сеть перед отправкой средств:
 
