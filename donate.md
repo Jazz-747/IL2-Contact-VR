@@ -9,7 +9,8 @@ Thank you for using **Il-2 vr Hands**! This software is free, open-source, and h
 
 ### 🌍 Worldwide (PayPal, Visa, Mastercard, Apple Pay)
 * **Boosty:** [Support via PayPal or International Card](https://boosty.to) *(Supports one-time donations without registration)*
-* **Lava.top / Hipolink:** [Support via Card / Apple Pay](https://ВАША_ССЫЛКА)
+* **Lava.top:** [USD / EUR / RUR](https://app.lava.top/products/62da030d-5d3d-4124-b5ab-574b8c0729b5/a4da095e-a762-4089-abdc-0300dbcdd4e2?currency=USD&domainId=bd7f1c24-6aaa-479d-9c7a-4adce2ea127b&domainName=il2.vr.hands)
+* **Hipolink:** [Support via Card / Apple Pay](https://ВАША_ССЫЛКА)
 
 ### 🇷🇺 🇧🇾 Россия и Беларусь (Карты РФ/РБ, СБП, ЮMoney)
 * **Telegram (Tribute):** [Поддержать в пару кликов](https://t.me) *(Карты РФ/РБ, Apple Pay, TON)*
@@ -20,11 +21,10 @@ Thank you for using **Il-2 vr Hands**! This software is free, open-source, and h
 No middleman fees. Please double-check the network before sending:
 Отсутствуют комиссии посредников. Пожалуйста, перепроверьте сеть перед отправкой средств:
 
-* **USDT (TRC-20):** `ВАШ_КОШЕЛЕК_TRC20`
-* **USDT (TON):** `ВАШ_КОШЕЛЕК_TON`
-* **TON:** `ВАШ_КОШЕЛЕК_TON`
-* **Bitcoin (BTC):** `ВАШ_КОШЕЛЕК_BTC`
-* **Monero (XMR):** `ВАШ_КОШЕЛЕК_XMR`
+* **Bitcoin (BTC):** `1AjziSGLMMEXPBZRAwL4sFPCyzTrbgk2y6`
+* **ETH:** `0xC06b9241105961Cef0E977DE30855850330B173e`
+* **LTC:** `ltc1qe56dvvnf935c9zgtdsejuzscex58vyur003hue`
+* **Monero (XMR):** `4KcuYFFgp6rXCfMNDsg81N5LaLRkaFgqsJjkzap4KZMscXVMzHCUVFd9SC9gP1N4v4PxRqry9Hi7LPhHcVsETD9tW723RWgjk2a8gnSABM`
 
 ---
 
