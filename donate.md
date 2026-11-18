@@ -3,7 +3,7 @@ Rrequisites:
 
 Thank you for using **Il-2 Contact VR**! This software is free, open-source, and has no ads. If it made your flights more convenient and realistic, you can support its further development.
 
-Спасибо, что пользуетесь **Il-2 vr Hands**! Программа бесплатна и не содержит рекламы. Если она сделала ваши полёты чуть удобнее и реалистичнее, вы можете отблагодарить автора и поддержать развитие проекта.
+Спасибо, что пользуетесь **Il-2 Contact VR**! Программа бесплатна и не содержит рекламы. Если она сделала ваши полёты чуть удобнее и реалистичнее, вы можете отблагодарить автора и поддержать развитие проекта.
 
 ---
 
