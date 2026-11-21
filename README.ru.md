@@ -1,4 +1,4 @@
-[English](README.md) | [Русский](README.ru.md)
+[English](README.md) | Русский
 
 # IL-2 Contact VR
 
