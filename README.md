@@ -1,84 +1,82 @@
+English | [Русский](README.ru.md)
+
 # IL-2 Contact VR
 
-Управление тумблерами, кнопками и рычагами кабины **IL-2 Sturmovik: Great Battles** в VR **пальцами рук, без контроллеров**.
-Игра не изменяется: программа следит за руками через OpenXR, и когда палец оказывается в нужной зоне кабины, отправляет в игру клавишу, уже назначенную на это действие.
+Control the switches, buttons and levers of the **IL-2 Sturmovik: Great Battles** cockpit in VR **with your fingers, no controllers**.
+The game is not modified: the program tracks your hands through OpenXR, and when a fingertip enters a cockpit zone, it sends the game the key that is already assigned to that action.
 
-> Статус: в разработке. Возможны ошибки. Windows 10/11.
+> Status: in development. Bugs are possible. Windows 10/11.
 
 https://youtu.be/rRFfpf-cne0
 
-## Что умеет
+## Features
 
-**Управление кабиной**
-- Нажатие тумблеров, кнопок и рычагов кабины пальцем: палец входит в зону, программа шлёт назначенную в игре клавишу.
-- Клавиша удерживается, пока палец в зоне (закрылки, радиатор и подобное), и отпускается при выходе, потере руки, паузе и остановке программы.
-- Любые сочетания клавиш, в том числе левые и правые `Ctrl/Alt/Shift` и клавиша `Win`.
-- Размер зоны у каждой кнопки свой (диаметр 10–80 мм), настраиваемая пауза до срабатывания и пауза после нажатия.
+**Cockpit control**
+- Press switches, buttons and levers with a finger: the fingertip enters a zone and the program sends the key assigned in the game.
+- The key is held while the finger stays in the zone (flaps, radiator and the like) and is released when the finger leaves, the hand is lost, the game is paused or the program stops.
+- Any key combinations, including left and right `Ctrl/Alt/Shift` and the `Win` key.
+- Each button has its own zone size (10–80 mm diameter), with an adjustable delay before activation and a delay after a press.
 
-**Профили самолётов**
-- Для каждого самолёта свой профиль: набор зон и клавиш. Нужный профиль выбирается сам по названию самолёта из телеметрии игры.
-- Привязка зон: вы наводите палец на кнопку в кабине и фиксируете её (держите палец неподвижно или нажимаете клавишу), программа запоминает зону.
-- Карточка самолёта в окне программы: список зон, правка клавиш и размеров, «Привязать» и «Привязать заново», копирование зон между самолётами, избранное, поиск.
-- Сохранение, загрузка; обмен профилями между игроками.
+**Aircraft profiles**
+- Every aircraft has its own profile: a set of zones and keys. The right profile is selected automatically from the aircraft name in the game's telemetry.
+- Pinning zones: point at a button in the cockpit and fix it (hold the finger still or press a key), and the program remembers the zone.
+- Aircraft card in the program window: list of zones, editing keys and sizes, "Pin" and "Re-pin", copying zones between aircraft, favorites, search.
+- Save and load profiles; share profiles between players.
 
-**Калибровка и центровка шлема**
-- Положение кабины привязано к центровке шлема (клавиша центрирования, по умолчанию NUM5, либо кнопка джойстика): после центровки зоны встают на места.
-- Калибровка по трём привязанным зонам и быстрая коррекция одним касанием одной зоны.
-- Отмена последней привязки, подсказки голосом и звуками (голос Windows), чтобы не смотреть на экран в шлеме.
+**Calibration and headset centering**
+- The cockpit position is tied to the headset centering (centering key, NUM5 by default, or a joystick button): after centering, the zones snap into place.
+- Calibration from three pinned zones and a quick correction by touching a single zone.
+- Undo the last pin; voice and sound prompts (Windows voice), so you do not have to look at the screen inside the headset.
 
-**Обратная связь в шлеме**
-- Цветной маркер на кончике пальца: цвет показывает состояние (норма, нужна калибровка, нужна привязка, коррекция).
-- Кольцо заполнения до срабатывания зоны и во время фиксации точки.
-- Показ зон текущего самолёта в шлеме (по клавише), чтобы видеть, где они стоят.
+**Feedback in the headset**
+- A colored marker on the fingertip: the color shows the state (normal, calibration needed, pinning needed, correction).
+- A fill ring before a zone fires and while a point is being fixed.
+- Showing the zones of the current aircraft in the headset (by a key), so you can see where they are.
 
-**Меню игры**
-- Когда телеметрии нет (меню, пауза), указательный палец двигает курсор мыши по окну игры, а удержание пальца на месте делает клик.
+**Game menu**
+- When there is no telemetry (menu, pause), the index finger moves the mouse cursor over the game window, and holding the finger still makes a click.
 
-**Определение состояния игры**
-- В паузе и меню управление кабиной отключается, а при возврате продолжается без новой настройки.
+**Game state detection**
+- In pause and in the menu, cockpit control is switched off, and it resumes on return with no new setup.
 
-**Окно и настройки**
-- Окно: вкладки «Самолёты», «Профили», «Настройки», «О программе», руководство «Первые шаги», подсказки у каждого параметра.
-- Русский и английский интерфейс, добавление своих языков файлом `language/*.lang`, светлая и тёмная темы.
-- Установка и удаление OpenXR-слоя из окна, правка `startup.cfg` игры (с резервной копией), проверка новой версии на GitHub.
-- Журнал работы для разбора проблем.
+**Window and settings**
+- Window: tabs "Aircraft", "Profiles", "Settings", "About", the "First steps" guide, tooltips for every parameter.
+- Russian and English interface, add your own languages with a `language/*.lang` file, light and dark themes.
+- Install and remove the OpenXR layer from the window, edit the game's `startup.cfg` (with a backup copy), check for a new version on GitHub.
+- A work log for troubleshooting.
 
-## Как это работает
+## How it works
 ```
-Шлем → OpenXR-рантайм → слой IL-2 Contact (позы головы и рук) → UDP → Python-программа
-                                                                   ↓ зоны, жесты, профили, телеметрия игры (UDP)
-                                                                   ↓ SendInput (scancode)
-                                                                 IL-2
+Headset → OpenXR runtime → IL-2 Contact layer (head and hand poses) → UDP → Python program
+                                                                      ↓ zones, gestures, profiles, game telemetry (UDP)
+                                                                      ↓ SendInput (scancode)
+                                                                    IL-2
 ```
 
-- Тонкий OpenXR-слой на C++ (`XR_APILAYER_IL2CONTACT`) снимает позы головы и рук и рисует маркер. Логики в слое нет.
-- Вся логика на Python: калибровка, зоны, жесты, профили, состояние игры, отправка клавиш, голос.
-- Падение Python-части не влияет на игру.
+- A thin OpenXR layer written in C++ (`XR_APILAYER_IL2CONTACT`) captures head and hand poses and draws the marker. The layer contains no logic.
+- All the logic is in Python: calibration, zones, gestures, profiles, game state, sending keys, voice.
+- A crash of the Python part does not affect the game.
 
-## Что нужно
-- Windows 10 или 11.
-- VR-шлем со **слежением за руками**, которое передаётся на ПК (проверено: Meta Quest 3 через Virtual Desktop / VDXR; другие шлемы не проверены).
-- IL-2 Great Battles, запущенная через **OpenXR** (для нативно-OpenVR игры нужен OpenComposite).
-- Включённая телеметрия в `data/startup.cfg` игры (программа может поправить файл сама).
-- В игре на нужные действия назначены клавиши.
+## Requirements
+- Windows 10 or 11.
+- A VR headset with **hand tracking** that is passed through to the PC (tested: Meta Quest 3 via Virtual Desktop / VDXR; other headsets have not been tested).
+- IL-2 Great Battles running through **OpenXR** (for a native OpenVR game, OpenComposite is needed).
+- Telemetry enabled in the game's `data/startup.cfg` (the program can fix the file itself).
+- Keys assigned in the game to the actions you want.
 
-## Установка и запуск
-**Готовая сборка (рекомендуется).** Скачайте архив из раздела Releases, распакуйте, запустите `IL2_Contact.exe`. Установку слоя программа предложит сама (Настройки → Слой OpenXR → Установить); потребуется разрешение администратора. Руководство «Первые шаги» откроется при первом запуске.
+## Installation and launch
+**Ready-made build (recommended).** Download the archive from the Releases section, unpack it and run `IL2_Contact.exe`. The program offers to install the layer itself (Settings → OpenXR layer → Install); administrator permission is required. The "First steps" guide opens on the first launch.
 
+**Quick start**
+1. Start the headset and IL-2, enable telemetry in the program settings.
+2. On the "Aircraft" tab open the aircraft card, create a profile, add buttons and pin the zones.
+3. Press the centering key, check the zones, and if they have shifted, make a correction with a double click of your fingers.
 
-**Быстрый старт**
-1. Запустите шлем и IL-2, включите телеметрию в настройках программы.
-2. В «Самолёты» откройте карточку самолёта, создайте профиль, добавьте кнопки и привяжите зоны.
-3. Нажмите клавишу центрирования, проверьте зоны, при смещении сделайте коррекцию двойным кликом пальцев.
+## Limitations
+- Hand tracking accuracy is about 1–2 cm: zones should not be too small. There is no tactile feedback; sound and the marker help.
+- Hands are lost when one covers the other and during fast movements.
+- The layer is not digitally signed, so Windows and antivirus software may show a warning.
+- The program does not know the state of a switch in the game: a repeated activation may flip it back.
 
-## Ограничения
-- Точность слежения за руками около 1..2 см: зоны не должны быть слишком мелкими. Тактильной отдачи нет, помогают звук и маркер.
-- Руки теряются при перекрытии одной другой и при быстрых движениях.
-- Слой не подписан цифровой подписью, Windows и антивирус могут показать предупреждение.
-- Состояние тумблера в игре программа не знает: повторное срабатывание может переключить его обратно.
-
-## Поддержать проект
-Программа разрабатывается в свободное время. Если она оказалась полезной, можно [поддержать](https://github.com/Jazz-747/IL2-Contact-VR/blob/main/donate.md) автора. Перевод добровольный и ни на что в программе не влияет.
-
-## Автор
-© 2026 Dzmitry Piatrovich (Jazz).  Идеи и ошибки: раздел Issues.
+## Support the project
+The program is developed in spare time. If it turned out to be useful, you can [support](https://github.com/Jazz-747/IL2-Contact-VR/blob/main/donate.md) the author. A donation is voluntary and does not affect anything in the program.
