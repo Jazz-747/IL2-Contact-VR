@@ -80,3 +80,6 @@ Headset → OpenXR runtime → IL-2 Contact layer (head and hand poses) → UDP 
 
 ## Support the project
 The program is developed in spare time. If it turned out to be useful, you can [support](https://github.com/Jazz-747/IL2-Contact-VR/blob/main/donate.md) the author. A donation is voluntary and does not affect anything in the program.
+
+## Author
+© 2026 Dzmitry Piatrovich (Jazz).
