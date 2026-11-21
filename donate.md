@@ -12,12 +12,15 @@ Thank you for using **Il-2 Contact VR**! This software is free, open-source, and
 * **Lava.top:** [USD](https://app.lava.top/products/62da030d-5d3d-4124-b5ab-574b8c0729b5/a4da095e-a762-4089-abdc-0300dbcdd4e2?currency=USD&domainId=bd7f1c24-6aaa-479d-9c7a-4adce2ea127b&domainName=il2.vr.hands)
 * **Lava.top:** [EUR](https://app.lava.top/products/62da030d-5d3d-4124-b5ab-574b8c0729b5/a4da095e-a762-4089-abdc-0300dbcdd4e2?currency=EUR&domainId=bd7f1c24-6aaa-479d-9c7a-4adce2ea127b&domainName=il2.vr.hands)
 * **Lava.top:** [RUR](https://app.lava.top/products/62da030d-5d3d-4124-b5ab-574b8c0729b5/a4da095e-a762-4089-abdc-0300dbcdd4e2?currency=RUB&domainId=bd7f1c24-6aaa-479d-9c7a-4adce2ea127b&domainName=il2.vr.hands)
+* **Tribute:** [EUR/RUR](https://web.tribute.tg/d/UD0)
 * **DonationAlerts:** [USD/EUR/RUR](https://dalink.to/jazz_747)
 * **Boosty:** [Support via PayPal or International Card](https://boosty.to/jazz_747/donate) 
 
 
 ### 🇷🇺 🇧🇾 Россия и Беларусь (Карты РФ/РБ, СБП, ЮMoney)
+
 * **ЮMoney:** [Перевести с карты или кошелька](https://yoomoney.ru/to/4100111609758612)
+* **Tribute:** [СБП/RUR/EUR](https://web.tribute.tg/d/UCX)
 * **Boosty:** [Поддержать картой РФ или через СБП](https://boosty.to/jazz_747/donate)
 
 ### 💎 Cryptocurrency / Криптовалюта (Direct / Напрямую)
