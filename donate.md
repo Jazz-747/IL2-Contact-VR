@@ -23,14 +23,7 @@ Thank you for using **Il-2 Contact VR**! This software is free, open-source, and
 * **Tribute:** [СБП/RUR/EUR](https://web.tribute.tg/d/UCX)
 * **Boosty:** [Поддержать картой РФ или через СБП](https://boosty.to/jazz_747/donate)
 
-### 💎 Cryptocurrency / Криптовалюта (Direct / Напрямую)
-No middleman fees. Please double-check the network before sending:
-Отсутствуют комиссии посредников. Пожалуйста, перепроверьте сеть перед отправкой средств:
 
-* **Bitcoin (BTC):** `1AjziSGLMMEXPBZRAwL4sFPCyzTrbgk2y6`
-* **ETH:** `0xC06b9241105961Cef0E977DE30855850330B173e`
-* **LTC:** `ltc1qe56dvvnf935c9zgtdsejuzscex58vyur003hue`
-* **Monero (XMR):** `4KcuYFFgp6rXCfMNDsg81N5LaLRkaFgqsJjkzap4KZMscXVMzHCUVFd9SC9gP1N4v4PxRqry9Hi7LPhHcVsETD9tW723RWgjk2a8gnSABM`
 
 ---
 
