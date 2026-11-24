@@ -1,0 +1,74 @@
+IL-2 Contact VR Freeware License, version 1.1
+
+Copyright (c) 2026 Dzmitry Piatrovich (Jazz). All rights reserved, except as expressly granted below.
+
+"Software" means the IL-2 Contact VR program, including its executable files, the OpenXR layer, documentation and resources, in
+the form published by the author. At present only the executable form is published; the source code is not published.
+
+1. GRANT OF PERMISSION
+Subject to the conditions below, the author grants every person who obtains a copy of the Software a non-exclusive, worldwide,
+free of charge permission to:
+  (a) use the Software;
+  (b) make copies of the Software;
+  (c) publish and distribute copies of the Software, in the form published by the author and without modification, free of charge;
+  (d) include an unmodified copy of the Software in a collection (compilation, mod pack, archive) that is itself distributed free
+      of charge, provided the Software remains a separate, identifiable and unmodified part, accompanied by this license text.
+
+2. CONDITIONS
+  (a) Every copy must be accompanied by this license text and the copyright notice above.
+  (b) Copies may be distributed only unmodified and free of charge. No fee, subscription, advertising, sponsorship, paid access,
+      download wall, or bundling with an installer or downloader that offers other software may be attached to the Software or
+      to its distribution. Direct costs of the physical medium or of hosting may be recovered, but only if no income is derived
+      from the Software itself.
+  (c) The Software must not be presented as made, endorsed or supported by anyone other than the author.
+
+3. RIGHTS NOT GRANTED
+Unless the author has given written permission, you may not:
+  (a) modify, adapt or create derivative works of the Software, or merge it into another product or work (placing an unmodified
+      copy in a free collection under clause 1(d) is not merging);
+  (b) sublicense, sell, rent, lease or otherwise charge for the Software;
+  (c) remove or change copyright, license or trademark notices;
+  (d) decompile, disassemble or reverse engineer the Software, or otherwise attempt to obtain its source code, except to the
+      extent that applicable law permits this despite this restriction.
+No rights to the source code are granted.
+
+4. USER CONTENT
+Aircraft profiles, translation (language) files, settings and calibration data that you create for use with the Software are
+yours to create, edit and share; this is not a modification of the Software. Such files must not contain parts of the
+Software's program code.
+
+5. CONTRIBUTIONS
+If you submit to the author any suggestion, correction, code or other material for inclusion in the Software, you grant the
+author a perpetual, worldwide, irrevocable, royalty-free right to use, modify, distribute and sublicense it under any terms,
+and you confirm that you have the right to do so.
+
+6. OWNERSHIP AND TRADEMARKS
+The Software is licensed, not sold. All rights not expressly granted remain with the author. IL-2 Sturmovik, IL-2 Great
+Battles, Meta Quest, Pico, OpenXR, Windows and other names belong to their owners; the Software is an unofficial project
+not affiliated with them. See DISCLAIMER.md.
+
+7. THIRD-PARTY COMPONENTS
+Third-party components included in or used by the Software remain under their own licenses; see THIRD_PARTY_NOTICES.md and the
+`doc\licenses` folder. This license does not change the terms of those licenses.
+
+8. TERMINATION
+This permission ends automatically if you breach these terms. After termination you must stop using and distributing the
+Software and delete your copies. Persons who received copies from you keep their own permission as long as they comply with
+these terms.
+
+9. NO WARRANTY
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+
+10. LIMITATION OF LIABILITY
+IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+11. DONATIONS
+Donations to the author are voluntary, are a gift and not a payment for the Software, and give no additional rights.
+
+12. SUPPORT
+The author has no obligation to provide support, updates or fixes.
+
+13. GOVERNING LAW
+This license is governed by the laws of the Republic of Belarus , without regard to its conflict-of-laws rules.
