@@ -32,6 +32,16 @@
 #include <string>
 #include <vector>
 
+// Версия слоя: номер берётся из SYS\\layer\\layer_version.txt (его подставляет sys_tool.pyw ключами /DLAYER_VER_*).
+#ifndef LAYER_VER_MAJOR
+#define LAYER_VER_MAJOR 0
+#define LAYER_VER_MINOR 0
+#define LAYER_VER_PATCH 0
+#endif
+#define IL2C_XS(x) #x
+#define IL2C_S(x) IL2C_XS(x)
+#define LAYER_VERSION_STR IL2C_S(LAYER_VER_MAJOR) "." IL2C_S(LAYER_VER_MINOR) "." IL2C_S(LAYER_VER_PATCH)
+
 namespace {
 
 constexpr uint16_t kPort = 4410;
@@ -87,9 +97,12 @@ struct MarkerState {
     bool show = false;
     XrVector3f pos{0, 0, 0};
     int activeFrames = 0;
+    int miss = 0;               // подряд кадров без валидной руки (короткие пропуски трекинга не сбрасывают прогрев)
     bool pointing = false;      // жест «указывает» с гистерезисом (как в hands.py)
     ULONGLONG pointMs = 0;      // когда жест в последний раз был «сырым»
 };
+constexpr int kWarmFrames = 10;  // кадров устойчивого трекинга до показа маркера (было 30)
+constexpr int kMaxMiss = 8;      // сколько кадров подряд без руки терпим, не сбрасывая прогрев
 MarkerState g_mk[2];
 XrQuaternionf g_headQ{0, 0, 0, 1};
 XrVector3f g_headP{0, 0, 0};
@@ -165,6 +178,15 @@ XrSwapchain g_zsc = XR_NULL_HANDLE;
 std::vector<ID3D11Texture2D*> g_ztex;
 bool g_zReady = false;
 ULONGLONG g_mkCmdMs = 0;
+// Режим сна: пока программа IL-2 Contact не запущена, слой ничего не делает в кадре (не читает позы рук и голову, не шлёт пакеты,
+// не пишет диагностику, не рисует), а только раз в kSleepPollMs проверяет сокет команд. Программа шлёт пакет раз в секунду
+// (команда маркера, список зон или пакет «жива»); нет пакетов дольше kAwakeMs = сон, первый пакет = слой сразу просыпается.
+// Если сокет команд не открылся (порт занят), слой не спит: иначе руки не дошли бы до программы.
+constexpr uint32_t kAliveMagic = 0x4B4C4149;
+constexpr ULONGLONG kAwakeMs = 3000;
+constexpr ULONGLONG kSleepPollMs = 200;
+ULONGLONG g_lastPktMs = 0;   // когда последний раз пришёл любой пакет от программы
+bool g_asleep = false;
 sockaddr_in g_dst{};
 uint64_t g_frame = 0;
 bool g_lastActive[2] = {false, false};
@@ -494,9 +516,12 @@ void pollCmd() {
         uint8_t buf[2000];  // команда маркера до 12 байт; список зон до 5 + 120*14 байт
         for (int i = 0; i < 16; ++i) {  // забираем все накопившиеся команды, действует последняя
             int n = recv(g_cmd, reinterpret_cast<char*>(buf), sizeof buf, 0);
-            if (n < 5) break;
+            if (n < 4) break;
+            g_lastPktMs = GetTickCount64();
             uint32_t m;
             memcpy(&m, buf, 4);
+            if (m == kAliveMagic) continue;   // «программа жива»: только будит слой
+            if (n < 5) continue;
             if (m == kZoneMagic) {  // список зон (отладка)
                 int cnt = std::min<int>(buf[4], kZMax);
                 if (n >= 5 + cnt * 14) {
@@ -790,9 +815,19 @@ void capture(XrTime t) {
         XrHandJointLocationsEXT locs{XR_TYPE_HAND_JOINT_LOCATIONS_EXT};
         locs.jointCount = XR_HAND_JOINT_COUNT_EXT;
         locs.jointLocations = jl;
+        // Пропуск трекинга (рука на кадр-другой не определилась): прогрев и жест не сбрасываем, а маркер держим на прежнем месте
+        // не дольше паузы 0,12 с; сброс только после kMaxMiss кадров подряд. Раньше любой пропуск обнулял прогрев (30 кадров = 0,33 с),
+        // из-за чего при двух поднятых руках маркер хуже отслеживаемой руки появлялся с задержкой.
+        auto lost = [&]() {
+            if (++g_mk[h].miss > kMaxMiss) {
+                g_mk[h].activeFrames = 0;
+                g_mk[h].pointing = false;
+            } else if (g_mk[h].activeFrames > kWarmFrames && GetTickCount64() - g_mk[h].pointMs < 120) {
+                g_mk[h].show = true;
+            }
+        };
         if (XR_FAILED(n_xrLocateHandJointsEXT(g_ht[h], &li, &locs)) || !locs.isActive) {
-            g_mk[h].activeFrames = 0;
-            g_mk[h].pointing = false;
+            lost();
             continue;
         }
 
@@ -811,9 +846,13 @@ void capture(XrTime t) {
 
         // Маркер: только если рука стабильно отслеживается (первые кадры после появления
         // неточны) и указательный вытянут при согнутых остальных (те же пороги, что в receiver.py).
-        g_mk[h].activeFrames = ok ? g_mk[h].activeFrames + 1 : 0;
-        if (!ok) g_mk[h].pointing = false;
-        if (ok && g_mk[h].activeFrames > 30) {
+        if (ok) {
+            g_mk[h].miss = 0;
+            ++g_mk[h].activeFrames;
+        } else {
+            lost();
+        }
+        if (ok && g_mk[h].activeFrames > kWarmFrames) {
             auto D = [&](int a, int b) {
                 float dx = p.hand[h].j[a][0] - p.hand[h].j[b][0];
                 float dy = p.hand[h].j[a][1] - p.hand[h].j[b][1];
@@ -890,9 +929,31 @@ XrResult XRAPI_CALL layer_xrEndFrame(XrSession session, const XrFrameEndInfo* in
     if (session != g_session || g_session == XR_NULL_HANDLE || !info)
         return n_xrEndFrame(session, info);
 
-    capture(info->displayTime);
+    ULONGLONG nowT = GetTickCount64();
+    static ULONGLONG s_lastPoll = 0;
+    if (g_cmd != INVALID_SOCKET && (!g_asleep || nowT - s_lastPoll >= kSleepPollMs)) {   // во сне сокет проверяется редко
+        s_lastPoll = nowT;
+        pollCmd();
+    }
+    bool awake = g_cmd == INVALID_SOCKET || (g_lastPktMs != 0 && nowT - g_lastPktMs < kAwakeMs);
+    if (!awake) {
+        if (!g_asleep) {
+            g_asleep = true;
+            g_headOk = false;
+            g_mk[0].show = g_mk[1].show = false;
+            g_zones.clear();
+            g_mkBase = 0; g_mkFrac = 0; g_mkRing[0] = g_mkRing[1] = 0;
+            logf_("программа IL-2 Contact не отвечает: слой спит (нет захвата рук, пакетов и маркеров)");
+        }
+        return n_xrEndFrame(session, info);
+    }
+    if (g_asleep) {
+        g_asleep = false;
+        logf_("программа IL-2 Contact на связи: слой работает");
+    }
 
-    pollCmd();
+    capture(info->displayTime);
+    if (g_cmd != INVALID_SOCKET) pollCmd();
     bool wantMk = g_markerReady && g_markerEnabled && g_headOk && (g_mk[0].show || g_mk[1].show);
     bool wantZ = g_zReady && g_headOk && g_cmd != INVALID_SOCKET && !g_zones.empty() && GetTickCount64() - g_zonesMs < 1000;
     if (!wantMk && !wantZ) return n_xrEndFrame(session, info);
@@ -1121,7 +1182,7 @@ extern "C" __declspec(dllexport) XrResult XRAPI_CALL xrNegotiateLoaderApiLayerIn
     {
         char exe[MAX_PATH] = {};
         GetModuleFileNameA(nullptr, exe, MAX_PATH);
-        logf_("DLL загружена лоадером (%s, pid %lu, %s)", exe, GetCurrentProcessId(),
+        logf_("DLL загружена лоадером (версия слоя %s, %s, pid %lu, %s)", LAYER_VERSION_STR, exe, GetCurrentProcessId(),
               sizeof(void*) == 8 ? "64-бит" : "32-бит");
     }
     if (!loaderInfo || !req || loaderInfo->structType != XR_LOADER_INTERFACE_STRUCT_LOADER_INFO ||
